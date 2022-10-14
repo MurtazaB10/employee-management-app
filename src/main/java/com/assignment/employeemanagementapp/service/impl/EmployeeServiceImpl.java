@@ -55,6 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee getEmployeeByIdAndDeptId(long id, long dept_id) {
         dr.findById(dept_id).orElseThrow(() -> new ResourceNotFoundException("Department", "Id", dept_id));
+        er.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", id));
         return er.findByIdAndDeptId(id, dept_id);
     }
 
@@ -81,8 +82,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee assignProjectsToEmployee(long eid, long pid) {
         Set<Project> projects = null;
-        Employee e = er.findById(eid).get();
-        Project p = pr.findById(pid).get();
+        Employee e = er.findById(eid).orElseThrow(() -> new ResourceNotFoundException("Employee", "Id", eid));
+        Project p = pr.findById(pid).orElseThrow(() -> new ResourceNotFoundException("Project", "Id", pid));
         projects = e.getAssignedProjects();
         projects.add(p);
         e.setAssignedProjects(projects);

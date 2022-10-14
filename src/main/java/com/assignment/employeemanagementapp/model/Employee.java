@@ -38,12 +38,13 @@ public class Employee {
 
     }
 
-    public Employee(String firstName, String lastName, String email, Department dept, Set<Project> assignedProjects) {
+    public Employee(long id, String firstName, String lastName, String email, Department dept, Set<Project> assignedProjects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.dept = dept;
         this.assignedProjects = assignedProjects;
+        this.id = id;
     }
 
     public long getId() {
