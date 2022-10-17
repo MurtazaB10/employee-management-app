@@ -48,6 +48,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project getProjectByIdAndDeptId(long id, long dept_id) {
         dr.findById(dept_id).orElseThrow(() -> new ResourceNotFoundException("Department", "Id", dept_id));
+        pr.findById(id).orElseThrow(() -> new ResourceNotFoundException("Project", "Id", id));
         return pr.findByPidAndDeptId(id, dept_id);
     }
 

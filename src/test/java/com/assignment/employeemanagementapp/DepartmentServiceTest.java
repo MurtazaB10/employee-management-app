@@ -28,6 +28,8 @@ public class DepartmentServiceTest {
     Department d1 = new Department(1l, "Test1", "Test1");
     Department d2 = new Department(2l, "Test2", "Test2");
     Department d3 = new Department(3l, "Test3", "Test3");
+    Department d = new Department(4L, "Test4", "Test4");
+
 
     @Mock
     private DepartmentRepository departmentRepository;
@@ -63,14 +65,12 @@ public class DepartmentServiceTest {
 
     @Test
     public void createDepartment_success() throws Exception {
-        Department d = new Department(4L, "Test4", "Test4");
         Mockito.when(departmentRepository.save(d)).thenReturn(d);
         assertThat(departmentService.saveDepartment(d)).isNotNull();
     }
 
     @Test
     public void updateDepartment_success() throws Exception {
-        Department d = new Department(4L, "Test4", "Test4");
         Mockito.when(departmentRepository.save(d)).thenReturn(d);
         Mockito.when(departmentRepository.findById(d.getId())).thenReturn(Optional.ofNullable(d));
         assertThat(departmentService.updateDepartment(d, d.getId())).isNotNull();
